@@ -40,7 +40,7 @@ const Item = styled.li`
         right: 0;
         left: 0;
         background-color: black;
-        opacity: 0.4;
+        opacity: 0.3;
         z-index: -1;
     }
     &:hover {

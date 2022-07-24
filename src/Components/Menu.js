@@ -5,6 +5,7 @@ import { ListItem } from './ListItem'
 
 const SectionMenu = styled.section`
     padding: 30px;
+    margin-left: 380px;
 `
 
 export const Menu = ({ setOpenItem }) => (

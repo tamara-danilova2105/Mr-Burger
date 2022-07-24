@@ -16,7 +16,8 @@ body {
   background-color: #f0f0f0;
   font-family: 'Comfortaa', cursive;
   font-size: 20px;
-  color: black;
+  color: #513252;
+  text-shadow: 1px 1px black;
 }
 
 img {
