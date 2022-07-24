@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import trash from '../images/trash.svg'
+import trash from '../../images/trash.svg'
 
-const OrderListItem = () => {
+const OrderListItem = ({ order }) => {
     return(
         <OrderItemSyled>
-            <ItemName>Бургер</ItemName>
+            <ItemName>{order.name}</ItemName>
             <span> 3 шт.</span>
-            <ItemPrice> 500 руб.</ItemPrice>
+            <ItemPrice>{order.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</ItemPrice>
             <TrashButton/>
         </OrderItemSyled>
     )

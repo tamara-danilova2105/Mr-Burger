@@ -1,16 +1,20 @@
 import styled from "styled-components"
-import { ButtonChekout } from "./ButtonChekout"
+import { ButtonChekout } from "../ButtonChekout"
 import OrderListItem from "./OrderListItem"
 
-const Order = () => {
+const Order = ({ orders }) => {
+    console.log(orders);
+
     return(
         <OrderStyled>
             <OrderTitle>КОРЗИНА</OrderTitle>
 
             <OrderConten>
-                <OrderList>
-                    <OrderListItem/>
-                </OrderList>
+                {orders.length ?
+                    <OrderList>
+                        {orders.map(order => <OrderListItem order={order}/>)}
+                    </OrderList>
+                : <Empty>Ваша корзина пуста...</Empty>}
             </OrderConten>
 
             <Total>
@@ -62,5 +66,9 @@ const TotalPrice = styled.span`
     text-align: center;
     min-width: 65px;
     margin-left: 20px;
+`
+
+const Empty = styled.p`
+    text-align: center;
 `
 

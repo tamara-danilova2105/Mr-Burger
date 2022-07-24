@@ -1,15 +1,23 @@
 import styled from "styled-components"
-import { ButtonChekout } from "./ButtonChekout"
+import { ButtonChekout } from "../ButtonChekout"
 
-export const ModalItem = ({ openItem, setOpenItem }) => {
+export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-    const closeModel = (e) => {
+    const closeModel = e => {
         if(e.target.id === "overlay") {
             setOpenItem(null)
         }
     }
 
-    if(!openItem) return null
+    const order = {
+        ...openItem
+    }
+
+    const addToOrder = () => {
+        setOrders([...orders, order])
+        setOpenItem(null)
+    }
+
     return(
         <Overlay id="overlay" onClick={closeModel}>
         <Modal>
@@ -19,7 +27,7 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
                     <div>{openItem.name}</div>
                     <div>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</div>
                 </HeaderContent>
-                <ButtonChekout>ДОБАВИТЬ</ButtonChekout>
+                <ButtonChekout onClick={addToOrder}>ДОБАВИТЬ</ButtonChekout>
             </Content>
         </Modal>
     </Overlay>

@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import logo from '../images/logo.svg'
-import signIn from '../images/sign.svg'
+import logo from '../../images/logo.svg'
+import signIn from '../../images/sign.svg'
 
 export const NavBar = () => {
     return(
@@ -23,7 +23,7 @@ const NavBarStyled = styled.header`
     left: 0;
     z-index: 999;
     height: 70px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,7 +46,6 @@ const LogIn = styled.button`
     padding: 3px 20px;
     font-size: 20px;
     border: none;
-    margin-right: 20px;
     background-color: transparent;
     color: white;
 `

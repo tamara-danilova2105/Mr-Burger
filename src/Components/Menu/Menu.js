@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Banner } from "./Banner"
-import dbMenu from './DBMenu'
+import dbMenu from '../DBMenu'
 import { ListItem } from './ListItem'
 
 const SectionMenu = styled.section`
