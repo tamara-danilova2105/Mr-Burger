@@ -3,11 +3,6 @@ import { Banner } from "./Banner"
 import dbMenu from '../DBMenu'
 import { ListItem } from './ListItem'
 
-const SectionMenu = styled.section`
-    padding: 30px;
-    margin-left: 380px;
-`
-
 export const Menu = ({ setOpenItem }) => (
     <MenuStyled>
         <Banner/>
@@ -30,4 +25,9 @@ export const Menu = ({ setOpenItem }) => (
 const MenuStyled = styled.main`
     background-color: #ccc;
     margin-top: 70px;
+`
+
+const SectionMenu = styled.section`
+    padding: 30px;
+    margin-left: 380px;
 `

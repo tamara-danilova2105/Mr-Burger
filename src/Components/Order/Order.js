@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import { ButtonChekout } from "../ButtonChekout"
 import OrderListItem from "./OrderListItem"
+import { getTotalPriceItem } from '../Modal/ModalItem'
 
 const Order = ({ orders }) => {
-    console.log(orders);
+    const getTotalOrder = orders.reduce((result, order) => 
+        getTotalPriceItem(order) + result, 0)
 
     return(
         <OrderStyled>
@@ -20,7 +22,7 @@ const Order = ({ orders }) => {
             <Total>
                 <span>ИТОГО:</span>
                 <span> 5 шт.</span>
-                <TotalPrice>1000 руб.</TotalPrice>
+                <TotalPrice>{getTotalOrder.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</TotalPrice>
             </Total>
             <ButtonChekout>ЗАКАЗАТЬ</ButtonChekout>
         </OrderStyled>

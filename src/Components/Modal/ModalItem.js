@@ -1,7 +1,13 @@
 import styled from "styled-components"
 import { ButtonChekout } from "../ButtonChekout"
+import { useCount } from "../Hooks/useCount"
+import { CountItem } from "./CountItem"
+
+export const getTotalPriceItem = order => order.price * order.count
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+
+    const counter = useCount()
 
     const closeModel = e => {
         if(e.target.id === "overlay") {
@@ -10,7 +16,8 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     }
 
     const order = {
-        ...openItem
+        ...openItem,
+        count:  counter.count
     }
 
     const addToOrder = () => {
@@ -27,6 +34,14 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                     <div>{openItem.name}</div>
                     <div>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</div>
                 </HeaderContent>
+
+                <CountItem {...counter}/>
+
+                <TotalPriceItem>
+                    <span>Цена:</span>
+                    <span>{getTotalPriceItem(order).toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
+                </TotalPriceItem>
+
                 <ButtonChekout onClick={addToOrder}>ДОБАВИТЬ</ButtonChekout>
             </Content>
         </Modal>
@@ -75,4 +90,9 @@ const HeaderContent = styled.div`
     font-size: 24px;
     font-weight: 700;
     font-family: 'Comfortaa', cursive;
+`
+
+const TotalPriceItem = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
