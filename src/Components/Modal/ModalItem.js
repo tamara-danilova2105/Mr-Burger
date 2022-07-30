@@ -2,12 +2,14 @@ import styled from "styled-components"
 import { ButtonChekout } from "../ButtonChekout"
 import { useCount } from "../Hooks/useCount"
 import { CountItem } from "./CountItem"
-
-export const getTotalPriceItem = order => order.price * order.count
+import { formatCurrency, getTotalPriceItem } from '../Function/secondaryFunction'
+import { Toppings } from "./Toppings"
+import { useTopping } from "../Hooks/useTopping"
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
     const counter = useCount()
+    const toppings = useTopping(openItem)
 
     const closeModel = e => {
         if(e.target.id === "overlay") {
@@ -17,7 +19,8 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
     const order = {
         ...openItem,
-        count:  counter.count
+        count:  counter.count,
+        topping: toppings.toppings
     }
 
     const addToOrder = () => {
@@ -32,14 +35,16 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
             <Content>
                 <HeaderContent>
                     <div>{openItem.name}</div>
-                    <div>{openItem.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</div>
+                    <div>{ formatCurrency(openItem.price)}</div>
                 </HeaderContent>
 
                 <CountItem {...counter}/>
 
+                {openItem.toppings && <Toppings {...toppings}/>}
+
                 <TotalPriceItem>
                     <span>Цена:</span>
-                    <span>{getTotalPriceItem(order).toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</span>
+                    <span>{formatCurrency(getTotalPriceItem(order))}</span>
                 </TotalPriceItem>
 
                 <ButtonChekout onClick={addToOrder}>ДОБАВИТЬ</ButtonChekout>

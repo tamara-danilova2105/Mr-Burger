@@ -13,9 +13,9 @@ html {
 
 body {
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0c0;
   font-family: 'Comfortaa', cursive;
-  font-size: 20px;
+  font-size: 16px;
   color: #513252;
   text-shadow: 1px 1px black;
 }

@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import trash from '../../images/trash.svg'
-import { getTotalPriceItem } from '../Modal/ModalItem'
+import { formatCurrency, getTotalPriceItem } from '../Function/secondaryFunction'
 
 const OrderListItem = ({ order }) => {
     return(
         <OrderItemSyled>
             <ItemName>{order.name}</ItemName>
             <span> {order.count} шт.</span>
-            <ItemPrice>{getTotalPriceItem(order).toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</ItemPrice>
+            <ItemPrice>{formatCurrency(getTotalPriceItem(order))}</ItemPrice>
             <TrashButton/>
         </OrderItemSyled>
     )

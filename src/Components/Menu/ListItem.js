@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { formatCurrency } from "../Function/secondaryFunction"
 
 export const ListItem = ({ itemList, setOpenItem }) => (
     <List>
@@ -8,7 +9,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
                 img={item.img}
                 onClick={() => setOpenItem(item)}>
                     <p>{item.name}</p>
-                    <p>{item.price.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'})}</p>
+                    <p>{formatCurrency(item.price)}</p>
             </Item>
         ))}
     </List>
