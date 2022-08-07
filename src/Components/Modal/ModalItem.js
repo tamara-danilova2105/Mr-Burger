@@ -10,7 +10,7 @@ import Choices from "./Choices"
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-    const counter = useCount()
+    const counter = useCount(openItem.count)
     const toppings = useTopping(openItem)
     const choices = useChoices(openItem)
     const isEdit = openItem.index > -1
@@ -37,6 +37,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         const newOrders = [...orders]
         newOrders[openItem.index] = order
         setOrders(newOrders)
+        setOpenItem(null)
     }
 
     return(
@@ -62,7 +63,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                 <ButtonChekout 
                     onClick={isEdit ? editOrder : addToOrder}
                     disabled={order.choices && !order.choice}
-                >ДОБАВИТЬ</ButtonChekout>
+                > {isEdit ? 'РЕДАКТИРОВАТ' : 'ДОБАВИТЬ'}</ButtonChekout>
             </Content>
         </Modal>
     </Overlay>
