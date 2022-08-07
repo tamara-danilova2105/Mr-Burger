@@ -42,7 +42,7 @@ const OrderStyled = styled.section`
     top: 70px;
     left: 0;
     background-color: #fff;
-    min-width: 380px;
+    width: 380px;
     height: calc(100% - 70px);
     padding: 20px;
 `

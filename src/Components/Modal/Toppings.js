@@ -10,11 +10,11 @@ export const Toppings = ({ toppings, checkToppings }) => {
                         <ToppingCheckbox 
                             type='checkbox'
                             checked={item.checked}
-                            onChange={() => checkToppings(i)}/>
+                            onChange={() => checkToppings(i)}
+                        />
                         {item.name}
                     </ToppingLabel>
                 ))}
-
             </ToppingWrap>
         </>
 

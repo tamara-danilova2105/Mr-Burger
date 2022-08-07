@@ -18,4 +18,9 @@ export const ButtonChekout = styled.button`
         color: #513252;
         border-color: #513252;
     }
+    &:disabled {
+        background-color: #bbb;
+        color: #fff;
+        border-color: #aaa;
+    }
 `
