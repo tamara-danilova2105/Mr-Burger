@@ -13,6 +13,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     const counter = useCount()
     const toppings = useTopping(openItem)
     const choices = useChoices(openItem)
+    const isEdit = openItem.index > -1
 
     const closeModel = e => {
         if(e.target.id === "overlay") {
@@ -30,6 +31,12 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     const addToOrder = () => {
         setOrders([...orders, order])
         setOpenItem(null)
+    }
+
+    const editOrder = () => {
+        const newOrders = [...orders]
+        newOrders[openItem.index] = order
+        setOrders(newOrders)
     }
 
     return(
@@ -53,7 +60,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                 </TotalPriceItem>
 
                 <ButtonChekout 
-                    onClick={addToOrder}
+                    onClick={isEdit ? editOrder : addToOrder}
                     disabled={order.choices && !order.choice}
                 >ДОБАВИТЬ</ButtonChekout>
             </Content>

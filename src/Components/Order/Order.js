@@ -3,12 +3,20 @@ import { ButtonChekout } from "../ButtonChekout"
 import OrderListItem from "./OrderListItem"
 import { formatCurrency, getTotalPriceItem } from '../Function/secondaryFunction'
 
-const Order = ({ orders }) => {
+const Order = ({ orders, setOrders, setOpenItem}) => {
     const getTotalOrder = orders.reduce((result, order) => 
         getTotalPriceItem(order) + result, 0)
 
     const getTotalCount = orders.reduce((result, order) => 
         order.count + result, 0)
+
+    const deletItem = index => {
+        // const newOrders = [...orders]
+        // newOrders.splice(index, 1)
+        const newOrders = orders.filter( (item, i) => index !== i)
+        setOrders(newOrders)
+    }
+
 
     return(
         <OrderStyled>
@@ -17,7 +25,14 @@ const Order = ({ orders }) => {
             <OrderConten>
                 {orders.length ?
                     <OrderList>
-                        {orders.map(order => <OrderListItem order={order}/>)}
+                        {orders.map((order, index) => 
+                        <OrderListItem 
+                            key={index} 
+                            index={index}
+                            order={order} 
+                            deletItem={deletItem}
+                            setOpenItem={setOpenItem}
+                        />)}
                     </OrderList>
                 : <Empty>Ваша корзина пуста...</Empty>}
             </OrderConten>

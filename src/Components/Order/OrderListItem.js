@@ -2,19 +2,18 @@ import styled from 'styled-components'
 import trash from '../../images/trash.svg'
 import { formatCurrency, getTotalPriceItem } from '../Function/secondaryFunction'
 
-const OrderListItem = ({ order }) => {
+const OrderListItem = ({ order, index, deletItem, setOpenItem}) => {
 
     const topping = order.topping.filter(item => item.checked)
         .map(item => item.name)
         .join(', ')
-    console.log(topping);
 
     return(
-        <OrderItemSyled>
+        <OrderItemSyled onClick={() => setOpenItem({...order, index})}>
             <ItemName>{order.name} {order.choice}</ItemName>
             <span> {order.count} шт.</span>
             <ItemPrice>{formatCurrency(getTotalPriceItem(order))}</ItemPrice>
-            <TrashButton/>
+            <TrashButton onClick={() => deletItem(index)}/>
             {topping && <Toppings>Допы: {topping}</Toppings>}
         </OrderItemSyled>
     )
